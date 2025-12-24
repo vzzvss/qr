@@ -1,0 +1,64 @@
+# PWA Configuration
+<IfModule mod_mime.c>
+    # Correct MIME types
+    AddType application/manifest+json .webmanifest .json
+    AddType application/javascript .js
+    AddType image/png .png
+    AddType text/html .html
+</IfModule>
+
+# Enable HTTPS redirect
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Cache Control
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Images
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+
+    # JavaScript and CSS
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/css "access plus 1 month"
+
+    # Manifest and Service Worker (no cache)
+    ExpiresByType application/manifest+json "access plus 0 seconds"
+    <FilesMatch "sw\.js$">
+        ExpiresDefault "access plus 0 seconds"
+    </FilesMatch>
+
+    # HTML
+    ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    # Prevent clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # XSS Protection
+    Header always set X-XSS-Protection "1; mode=block"
+
+    # Prevent MIME sniffing
+    Header always set X-Content-Type-Options "nosniff"
+
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Content Security Policy
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.mymemory.translated.net https://wa.me; font-src 'self' data:;"
+</IfModule>
+
+# Error Pages
+ErrorDocument 404 /index.html
