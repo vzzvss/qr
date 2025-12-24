@@ -77,9 +77,9 @@
             left: -50px;
             right: -50px;
             bottom: -50px;
-            font-size: 70px;
-            opacity: 0.12;
-            animation: floatPattern 10s ease-in-out infinite;
+            font-size: 40px;
+            opacity: 0.08;
+            animation: floatPattern 8s ease-in-out infinite;
             pointer-events: none;
             line-height: 1.6;
         }
@@ -132,7 +132,11 @@
         }
 
         @keyframes fadeOut {
-            to { opacity: 0; pointer-events: none; }
+            to { 
+                opacity: 0; 
+                pointer-events: none;
+                will-change: opacity;
+            }
         }
 
         /* Install PWA Banner */
@@ -183,10 +187,10 @@
         .install-btn {
             padding: 10px 20px;
             background: white;
-            color: var(--primary);
+            color: #1565C0;
             border: none;
             border-radius: 6px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -745,113 +749,116 @@
         </div>
     </div>
 
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="title-container">
-                <div class="title">Abu_Qais_Qr</div>
-                <div class="title-ar" style="font-family: Arial;">ابو_قيس_للخدمات</div>
-                <div class="emoji-decoration">🏛️ 📲 🔲 📱 ⬜</div>
+    <!-- Main Content -->
+    <main>
+        <!-- Main Container -->
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <div class="title-container">
+                    <div class="title">Abu_Qais_Qr</div>
+                    <div class="title-ar" style="font-family: Arial;">ابو_قيس_للخدمات</div>
+                    <div class="emoji-decoration">🏛️ 📲 🔲 📱 ⬜</div>
+                </div>
+            </div>
+
+            <!-- Form Section -->
+            <div class="form-section">
+                <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">✨ نموذج إدخال البيانات</h2>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">اسم السائق (العربية)</label>
+                        <div class="input-wrapper" id="wrapper-ar">
+                            <input type="text" class="form-input" id="driverNameAr" placeholder="أدخل الاسم بالعربية">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Driver Name (English)</label>
+                        <div class="input-wrapper">
+                            <input type="text" class="form-input" id="driverNameEn" placeholder="Enter name in English">
+                            <button class="translate-btn" id="translateBtn1">ترجم</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">رقم الهوية</label>
+                        <input type="text" class="form-input" id="idNumber" placeholder="أدخل رقم الهوية">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">نوع البطاقة</label>
+                        <input type="text" class="form-input" id="cardType" placeholder="رخصة قيادة / بطاقة هوية">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">اسم المنشأة (العربية)</label>
+                        <div class="input-wrapper" id="wrapper-org-ar">
+                            <input type="text" class="form-input" id="orgNameAr" placeholder="أدخل اسم المنشأة">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Organization Name (English)</label>
+                        <div class="input-wrapper">
+                            <input type="text" class="form-input" id="orgNameEn" placeholder="Enter organization name">
+                            <button class="translate-btn" id="translateBtn2">ترجم</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">رقم هوية المنشأة</label>
+                        <input type="text" class="form-input" id="orgId" placeholder="أدخل رقم الهوية">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">نوع الشهادة</label>
+                        <input type="text" class="form-input" id="certificateType" placeholder="نوع الشهادة المطلوبة">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">ملاحظات</label>
+                    <input type="text" class="form-input" id="notes" placeholder="ملاحظات إضافية...">
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="saveBtn">💾 حفظ وإرسال</button>
+                    <button class="btn btn-secondary" id="resetBtn">🔄 إعادة تعيين</button>
+                </div>
+            </div>
+
+            <!-- Certificate Section -->
+            <div class="certificate" id="certificate">
+                <div class="certificate-stamp">
+                    <div class="stamp-text">
+                        ✓<br>تم الاعتماد<br>إن شاء الله
+                    </div>
+                </div>
+
+                <div class="certificate-header">
+                    <div class="certificate-title">📜 بيانات بطاقة السائق المعتمدة</div>
+                </div>
+
+                <div class="certificate-content">
+                    <div class="cert-data" id="certData"></div>
+                    <div class="cert-time" id="certTime"></div>
+                </div>
+
+                <div class="cert-buttons">
+                    <button class="btn btn-primary" id="downloadBtn">⬇️ حفظ كصورة PNG</button>
+                    <button class="btn btn-secondary" id="shareBtn">📤 مشاركة عبر واتساب</button>
+                </div>
             </div>
         </div>
-
-        <!-- Form Section -->
-        <div class="form-section">
-            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">✨ نموذج إدخال البيانات</h2>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label">اسم السائق (العربية)</label>
-                    <div class="input-wrapper" id="wrapper-ar">
-                        <input type="text" class="form-input" id="driverNameAr" placeholder="أدخل الاسم بالعربية">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Driver Name (English)</label>
-                    <div class="input-wrapper">
-                        <input type="text" class="form-input" id="driverNameEn" placeholder="Enter name in English">
-                        <button class="translate-btn" id="translateBtn1">ترجم</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label">رقم الهوية</label>
-                    <input type="text" class="form-input" id="idNumber" placeholder="أدخل رقم الهوية">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">نوع البطاقة</label>
-                    <input type="text" class="form-input" id="cardType" placeholder="رخصة قيادة / بطاقة هوية">
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label">اسم المنشأة (العربية)</label>
-                    <div class="input-wrapper" id="wrapper-org-ar">
-                        <input type="text" class="form-input" id="orgNameAr" placeholder="أدخل اسم المنشأة">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Organization Name (English)</label>
-                    <div class="input-wrapper">
-                        <input type="text" class="form-input" id="orgNameEn" placeholder="Enter organization name">
-                        <button class="translate-btn" id="translateBtn2">ترجم</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label">رقم هوية المنشأة</label>
-                    <input type="text" class="form-input" id="orgId" placeholder="أدخل رقم الهوية">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">نوع الشهادة</label>
-                    <input type="text" class="form-input" id="certificateType" placeholder="نوع الشهادة المطلوبة">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">ملاحظات</label>
-                <input type="text" class="form-input" id="notes" placeholder="ملاحظات إضافية...">
-            </div>
-
-            <div class="btn-group">
-                <button class="btn btn-primary" id="saveBtn">💾 حفظ وإرسال</button>
-                <button class="btn btn-secondary" id="resetBtn">🔄 إعادة تعيين</button>
-            </div>
-        </div>
-
-        <!-- Certificate Section -->
-        <div class="certificate" id="certificate">
-            <div class="certificate-stamp">
-                <div class="stamp-text">
-                    ✓<br>تم الاعتماد<br>إن شاء الله
-                </div>
-            </div>
-
-            <div class="certificate-header">
-                <div class="certificate-title">📜 بيانات بطاقة السائق المعتمدة</div>
-            </div>
-
-            <div class="certificate-content">
-                <div class="cert-data" id="certData"></div>
-                <div class="cert-time" id="certTime"></div>
-            </div>
-
-            <div class="cert-buttons">
-                <button class="btn btn-primary" id="downloadBtn">⬇️ حفظ كصورة PNG</button>
-                <button class="btn btn-secondary" id="shareBtn">📤 مشاركة عبر واتساب</button>
-            </div>
-        </div>
-    </div>
+    </main>
 
     <!-- Confirmation Modal -->
     <div class="modal" id="confirmModal">
@@ -910,28 +917,28 @@
         // Service Worker Registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(reg => {
-                        console.log('✅ Service Worker registered:', reg);
+                setTimeout(() => {
+                    navigator.serviceWorker.register('/qr/sw.js')
+                        .then(reg => {
+                            console.log('✅ Service Worker registered:', reg);
 
-                        // Check for updates
-                        reg.addEventListener('updatefound', () => {
-                            const newWorker = reg.installing;
-                            newWorker.addEventListener('statechange', () => {
-                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                    // New update available
-                                    if (confirm('تحديث جديد متاح! هل تريد التحديث الآن؟')) {
-                                        newWorker.postMessage({ type: 'SKIP_WAITING' });
-                                        window.location.reload();
+                            // Check for updates
+                            reg.addEventListener('updatefound', () => {
+                                const newWorker = reg.installing;
+                                newWorker.addEventListener('statechange', () => {
+                                    if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                        if (confirm('تحديث جديد متاح! هل تريد التحديث الآن؟')) {
+                                            newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                            window.location.reload();
+                                        }
                                     }
-                                }
+                                });
                             });
-                        });
-                    })
-                    .catch(err => console.log('❌ Service Worker registration failed:', err));
+                        })
+                        .catch(err => console.log('❌ Service Worker registration failed:', err));
+                }, 500);
             });
 
-            // Reload when new service worker takes control
             navigator.serviceWorker.addEventListener('controllerchange', () => {
                 window.location.reload();
             });
